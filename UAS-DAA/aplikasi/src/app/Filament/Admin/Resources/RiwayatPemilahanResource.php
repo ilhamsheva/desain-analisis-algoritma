@@ -33,6 +33,7 @@ class RiwayatPemilahanResource extends Resource
             ->schema([
                 Forms\Components\Select::make('user_id')
                     ->relationship('user', 'name')
+                    ->label('Nama Pengguna')
                     ->required(),
                 Forms\Components\Select::make('sampah_id')
                     ->label('Nama Sampah')
@@ -49,12 +50,15 @@ class RiwayatPemilahanResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('user.name')
                     ->numeric()
+                    ->label('Nama Pengguna')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('sampah.nama_sampah')
                     ->numeric()
+                    ->label('Nama Sampah')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('tanggal_pemilahan')
                     ->date()
+                    ->label('Tanggal Pemilahan')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()

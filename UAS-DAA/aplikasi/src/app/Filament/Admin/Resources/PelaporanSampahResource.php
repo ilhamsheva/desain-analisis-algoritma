@@ -39,7 +39,7 @@ class PelaporanSampahResource extends Resource
                     ->preload(),
                 Forms\Components\Select::make('user_id')
                     ->required()
-                    ->label('Users')
+                    ->label('Nama Pengguna')
                     ->options(User::all()->pluck('name', 'id')->toArray())
                     ->preload(),
                 Forms\Components\DatePicker::make('tanggal')
@@ -62,10 +62,11 @@ class PelaporanSampahResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('user.name')
                     ->numeric()
-                    ->label('Users')
+                    ->label('Nama Pengguna')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('tanggal')
                     ->date()
+                    ->label('Tanggal Laporan')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('lokasi')
                     ->searchable(),

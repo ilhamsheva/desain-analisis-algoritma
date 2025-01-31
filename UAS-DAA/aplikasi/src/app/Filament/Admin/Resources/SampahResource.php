@@ -57,6 +57,7 @@ class SampahResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('nama_sampah')
+                    ->label('Nama Sampah')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('kategori.kategori_nama')
                     ->label('Kategori Sampah')

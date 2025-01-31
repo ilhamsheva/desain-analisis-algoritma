@@ -35,6 +35,7 @@ class KategoriSampahResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('kategori_nama')
+                    ->label('Kategori Sampah')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
