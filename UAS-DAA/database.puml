@@ -1,0 +1,45 @@
+@startuml database
+
+entity "Users" as users {
+  + id : int [PK]
+  name : string
+  email : string
+  password : string
+  avatar_url : string
+}
+
+entity "Sampah" as sampah {
+  + id : int [PK]
+  nama_sampah : string
+  kategori_id : int [FK]
+  deskripsi : string
+  status : string
+}
+
+entity "Kategori Sampah" as kategori {
+  + id : int [PK]
+  kategori_nama : string
+}
+
+entity "Pelaporan Sampah" as pelaporan {
+  + id : int [PK]
+  user_id : int [FK]
+  sampah_id : int [FK]
+  tanggal : date
+  lokasi : string
+  keterangan : string
+}
+
+entity "Riwayat Pemilahan Sampah" as riwayat {
+  + id : int [PK]
+  user_id : int [FK]
+  sampah_id : int [FK]
+  tanggal_pemilahan : date
+}
+
+users ||--o{ pelaporan : "melaporkan"
+users ||--o{ riwayat : "memilah"
+kategori ||--o{ sampah : "memiliki"
+sampah ||--o{ pelaporan : "dilaporkan"
+sampah ||--o{ riwayat : "dipilah"
+@enduml

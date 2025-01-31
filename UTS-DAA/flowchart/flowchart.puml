@@ -1,0 +1,43 @@
+@startuml Pendaftaran
+start
+
+:Login Mahasiswa;
+
+if (Login Valid?) then (yes)
+    :Menu Pendaftaran Beasiswa;
+    :Pilih Jenis Beasiswa;
+    
+    if (Cek Persyaratan?) then (memenuhi)
+        :Isi Form Pendaftaran;
+        :Upload Berkas;
+        
+        fork
+            :Verifikasi Admin;
+        fork again
+            :Validasi Kaprodi;
+        end fork
+        
+        if (Berkas Valid?) then (yes)
+            :Proses Seleksi;
+            if (Lulus Seleksi?) then (yes)
+                :Status Diterima;
+                :Pengumuman;
+                :Pencairan Beasiswa;
+            else (no)
+                :Status Ditolak;
+                :Pengumuman;
+            endif
+        else (no)
+            :Perbaiki Berkas;
+            :Upload Ulang;
+        endif
+    else (tidak memenuhi)
+        :Tampilkan Notifikasi;
+        :Kembali ke Menu Utama;
+    endif
+else (no)
+    :Kembali ke Login;
+endif
+
+stop
+@enduml

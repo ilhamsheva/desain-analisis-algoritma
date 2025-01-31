@@ -1,0 +1,20 @@
+@startuml flowchart
+start
+:Mulai Aplikasi;
+:User memilih menu "Laporan Sampah";
+if (User sudah login?) then (ya)
+  :User memasukkan informasi sampah;
+  :User memilih kategori sampah;
+  :User mengirim laporan;
+  :User memilih menu "Pemilahan Sampah";
+  :User memilah sampah;
+  :User menyimpan riwayat pemilahan;
+else (tidak)
+  :User diminta login terlebih dahulu;
+  :User login;
+endif
+:Admin mengelola data sampah;
+:Admin melihat laporan dari pengguna;
+:Admin melihat riwayat pemilahan sampah;
+stop
+@enduml

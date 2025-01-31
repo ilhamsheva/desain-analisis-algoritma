@@ -1,0 +1,44 @@
+@startuml kampus
+
+/'
+actor is a human
+actor juga sebagai pelaku
+'/
+
+actor Mahasiswa as mhs
+actor Dosen as ds
+
+package Mahasiswa {
+    usecase "Melihat Jadwal Kuliah" as U1
+    usecase "Mengumpulkan Tugas" as U2
+    usecase "Mengikuti Ujian" as U3
+}
+
+package Dosen {
+    usecase "Memberi Tugas" as U5
+    usecase "Memberi Nilai" as U6
+}
+
+package Matkul {
+    usecase "Mengelola Mata Kuliah" as U7
+}
+
+package ClassRoom {
+    usecase "Mengadakan Kelas Online" as U8
+}
+
+' Procedure
+mhs --> U1 : Melihat Jadwal
+mhs --> U2 : Mengumpulkan Tugas
+mhs --> U3 : Mengikuti Ujian
+
+ds --> U5 : Memberi Tugas
+ds --> U6 : Memberi Nilai
+ds --> U8 : Mengadakan Kelas Online
+
+U5 --> U7 : Tugas untuk Matkul
+U6 --> U7 : Nilai dari Matkul
+
+'proses 
+
+@enduml

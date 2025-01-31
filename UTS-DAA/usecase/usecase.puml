@@ -1,0 +1,33 @@
+@startuml usecase
+left to right direction
+skinparam packageStyle rectangle
+
+actor Admin
+actor Mahasiswa
+actor "Kepala Program Studi" as Kaprodi
+
+rectangle "Sistem Data Beasiswa" {
+    ' Admin Use Cases
+    Admin --> (Login)
+    Admin --> (Kelola Data Beasiswa)
+    Admin --> (Verifikasi Berkas)
+    Admin --> (Kelola Pengumuman)
+    
+    ' Mahasiswa Use Cases
+    Mahasiswa --> (Login)
+    Mahasiswa --> (Daftar Beasiswa)
+    Mahasiswa --> (Upload Berkas)
+    Mahasiswa --> (Lihat Status Pendaftaran)
+    Mahasiswa --> (Lihat Pengumuman)
+    
+    ' Kaprodi Use Cases
+    Kaprodi --> (Login)
+    Kaprodi --> (Validasi Pendaftaran)
+    Kaprodi --> (Seleksi Penerima)
+
+    ' Include relationships
+    (Daftar Beasiswa) .> (Upload Berkas) : include
+    (Verifikasi Berkas) .> (Login) : include
+    (Validasi Pendaftaran) .> (Login) : include
+}
+@enduml

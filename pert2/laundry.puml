@@ -1,0 +1,29 @@
+@startuml Laundry
+
+actor Pelanggan as user
+
+package Laundry {
+    actor Tukang_Bersih as tb
+    actor Admin as adm
+    actor Owner as own
+}
+
+package Laundry {
+    usecase "Melihat Katalog dan Harga" as P1
+    usecase "Menghubungi Admin" as P2
+    usecase "Mengantar Baju" as P3
+    usecase "Memproses Cucian" as P4
+    usecase "Mengelola Transaksi" as P5
+}
+
+user --> P1
+user --> P2
+user --> P3
+
+tb --> P4
+adm --> P5 : Mengelola Transaksi
+own --> P5 : Memantau Transaksi
+
+'proses
+
+@enduml

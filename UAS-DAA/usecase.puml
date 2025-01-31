@@ -1,0 +1,16 @@
+@startuml usecase
+actor User
+actor Admin
+
+User --> (Laporan Sampah)
+User --> (Mencari Info Sampah)
+User --> (Pemilahan Sampah)
+
+Admin --> (Mengelola Data Sampah)
+Admin --> (Melihat Laporan Sampah)
+Admin --> (Melihat Riwayat Pemilahan Sampah)
+
+(Laporan Sampah) --> (Memasukkan Data Sampah)
+(Mencari Info Sampah) --> (Melihat Klasifikasi Sampah)
+(Pemilahan Sampah) --> (Menyimpan Riwayat Pemilahan)
+@enduml

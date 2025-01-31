@@ -1,0 +1,78 @@
+@startuml rancangan database
+!define table(x) class x << (T,#FFAAAA) >>
+!define primary_key(x) <u>x</u>
+!define foreign_key(x) #x#
+
+' Define tables
+table(Mahasiswa) {
+    primary_key(nim) : varchar(20)
+    nama : varchar(100)
+    prodi : varchar(50)
+    semester : int
+    ipk : float
+    no_telp : varchar(15)
+    email : varchar(100)
+    alamat : text
+    angkatan : varchar(4)
+}
+
+table(Beasiswa) {
+    primary_key(id_beasiswa) : int
+    nama_beasiswa : varchar(100)
+    jenis_beasiswa : varchar(50)
+    periode : varchar(20)
+    kuota : int
+    tanggal_mulai : date
+    tanggal_selesai : date
+    syarat : text
+    status : enum('aktif','nonaktif')
+}
+
+table(Pendaftaran) {
+    primary_key(id_pendaftaran) : int
+    foreign_key(nim) : varchar(20)
+    foreign_key(id_beasiswa) : int
+    tanggal_daftar : date
+    status_verifikasi : enum('pending','diterima','ditolak')
+    status_seleksi : enum('belum','lulus','tidak_lulus')
+    penghasilan_ortu : decimal
+    semester_saat_daftar : int
+    ipk_saat_daftar : float
+}
+
+table(Berkas) {
+    primary_key(id_berkas) : int
+    foreign_key(id_pendaftaran) : int
+    jenis_berkas : varchar(50)
+    nama_file : varchar(255)
+    tanggal_upload : datetime
+    status_verifikasi : enum('pending','valid','invalid')
+    keterangan : text
+}
+
+table(PenerimaBeasiswa) {
+    primary_key(id_penerima) : int
+    foreign_key(id_pendaftaran) : int
+    periode_penerimaan : varchar(20)
+    tanggal_terima : date
+    nominal_diterima : decimal
+    status_pencairan : enum('belum','sudah')
+}
+
+table(Pengumuman) {
+    primary_key(id_pengumuman) : int
+    foreign_key(id_beasiswa) : int
+    judul : varchar(200)
+    isi : text
+    tanggal_post : datetime
+    status : enum('draft','published')
+}
+
+' Define relationships
+Mahasiswa ||--o{ Pendaftaran
+Beasiswa ||--o{ Pendaftaran
+Pendaftaran ||--o{ Berkas
+Pendaftaran ||--o| PenerimaBeasiswa
+Beasiswa ||--o{ Pengumuman
+
+@enduml
